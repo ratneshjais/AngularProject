@@ -1,6 +1,16 @@
 
 <form (submit)="VerifyAuth($event)">
-  <input type="text" placeholder="User Name" id="username" autocomplete="off">
-  <input type="password" placeholder="Password" id="password" autocomplete="off">
-  <input type="Submit" value="Submit">
+  <div class="container">
+    <div>
+      <input type="text" class="form-control" placeholder="User Name" id="username" autocomplete="off">
+    </div>
+    <div>
+      <input type="password" placeholder="Password" id="password" autocomplete="off">
+    </div>
+    <div>
+      <button type="submit" id="submit">Submit</button>
+    </div>
+  </div>
 </form>
+
+
