@@ -6,6 +6,10 @@ import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule} from "@angular/common/http";
+import { AuthenticateGuard} from "./authenticate.guard";
+import { UserService} from "./user.service";
+import { AuthService} from "./auth.service";
+import { NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
   declarations: [
@@ -17,6 +21,7 @@ import { HttpClientModule} from "@angular/common/http";
   imports: [
     BrowserModule,
     HttpClientModule,
+    NgbModule,
     RouterModule.forRoot([
       {
         path: 'login',
@@ -24,7 +29,13 @@ import { HttpClientModule} from "@angular/common/http";
       },
       {
         path: 'admin',
-        component: AdminComponent
+        component: AdminComponent,
+        canActivate: [AuthenticateGuard]
+      },
+      {
+        path: 'home',
+        component: HomeComponent,
+        // canActivate: [AuthenticateGuard]
       },
       {
         path: '',
@@ -32,7 +43,7 @@ import { HttpClientModule} from "@angular/common/http";
       }
       ])
   ],
-  providers: [],
+  providers: [AuthenticateGuard,AuthService,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
